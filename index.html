@@ -87,6 +87,15 @@
     </section>
   </main>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+  window.TrackJS && TrackJS.install({ 
+    token: "4b031c7d925449afbbe0f0909e76b2c2"
+    // for more configuration options, see https://docs.trackjs.com
+  });
+  TrackJS.track('Testing TrackJS!');
+</script>
+
   <script>
     let form = document.querySelector('form');
     form.addEventListener('submit', e => {
@@ -99,10 +108,19 @@
       try { 
         output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
       } catch(error){
-        console.error('You have made an error.' );
-        throw(error);
+        if(firstNum == null || secondNum == null){
+          throw new ValidationError("input is empty");
+        } 
+        throw(error); 
       } finally{
         console.log("End of evaluation");
+      }
+
+      class ValidationError extends Error {
+        constructor(message) {
+        super(message);
+        this.name = "ValidationError";
+        }
       }
     });
 
@@ -194,6 +212,10 @@
     errorBtns[14].addEventListener('click', (e) => {
       globalerror;  
     });
+
+    if (window.onerror) {
+      console.log('Error!!');
+    }
   </script>
 </body>
 
