@@ -115,14 +115,14 @@
       } finally{
         console.log("End of evaluation");
       }
-
-      class ValidationError extends Error {
-        constructor(message) {
-        super(message);
-        this.name = "ValidationError";
-        }
-      }
     });
+
+    class ValidationError extends Error {
+      constructor(message) {
+      super(message);
+      this.name = "ValidationError";
+      }
+    }
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
 
